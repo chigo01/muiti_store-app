@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:multi_store_app/main_screens/cart.dart';
 import 'package:multi_store_app/main_screens/category.dart';
+import 'package:multi_store_app/main_screens/dashboard.dart';
 import 'package:multi_store_app/main_screens/home.dart';
-import 'package:multi_store_app/main_screens/profile.dart';
 import 'package:multi_store_app/main_screens/stores.dart';
 
-class CustomerHomeScreen extends StatefulWidget {
-  const CustomerHomeScreen({Key? key}) : super(key: key);
+class SupplierHomeScreen extends StatefulWidget {
+  const SupplierHomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<CustomerHomeScreen> createState() => _CustomerHomeScreenState();
+  State<SupplierHomeScreen> createState() => _SupplierHomeScreenState();
 }
 
-class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
+class _SupplierHomeScreenState extends State<SupplierHomeScreen> {
   int _selectedIndex = 0;
   final List<Widget> _tabs = [
     const HomeScreen(),
     const CategoryScreen(),
     const StoresScreen(),
-    const CartScreen(),
-    const ProfileScreen(),
+    const DashboardScreen(),
+    const Center(child: Text('upload')),
   ];
   @override
   Widget build(BuildContext context) {
@@ -47,12 +46,12 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
             label: 'Stories',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
+            icon: Icon(Icons.dashboard),
+            label: 'Dashboard',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: Icon(Icons.upload),
+            label: 'Upload',
           ),
         ],
 
