@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:multi_store_app/dash_board%20components/edit_bussiness.dart';
+import 'package:multi_store_app/dash_board%20components/manage_products.dart';
+import 'package:multi_store_app/dash_board%20components/my_store.dart';
+import 'package:multi_store_app/dash_board%20components/supplier_balance.dart';
+import 'package:multi_store_app/dash_board%20components/supplier_orders.dart';
+import 'package:multi_store_app/dash_board%20components/supplier_statics.dart';
+import 'package:multi_store_app/main_screens/welcome_screen.dart';
 import 'package:multi_store_app/widgets/components/appbar_widgets.dart';
 
 List<String> label = [
@@ -19,6 +26,15 @@ List<IconData> icons = [
   Icons.show_chart,
 ];
 
+List<Widget> screens = [
+  const MyStore(),
+  const SupplierOrders(),
+  const EditBusiness(),
+  const ManageProducts(),
+  const BalanceScreen(),
+  const Statics()
+];
+
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
 
@@ -31,7 +47,10 @@ class DashboardScreen extends StatelessWidget {
         title: const AppBarTittle(title: 'Dashboard'),
         actions: [
           IconButton(
-            onPressed: (() {}),
+            onPressed: (() {
+              Navigator.pushReplacementNamed(
+                  context, WelcomeScreen.welcomeScreen);
+            }),
             icon: const Icon(
               Icons.logout,
               color: Colors.black,
@@ -47,28 +66,35 @@ class DashboardScreen extends StatelessWidget {
           crossAxisCount: 2,
           children: List.generate(
             6,
-            (index) => Card(
-              shadowColor: Colors.purpleAccent.shade200,
-              elevation: 20,
-              color: Colors.blueGrey.withOpacity(0.7),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(
-                    icons[index],
-                    color: Colors.yellowAccent,
-                    size: 50,
-                  ),
-                  Text(
-                    label[index].toUpperCase(),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Acme',
-                        letterSpacing: 2),
-                  ),
-                ],
+            (index) => InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => screens[index]));
+              },
+              child: Card(
+                shadowColor: Colors.purpleAccent.shade200,
+                elevation: 20,
+                color: Colors.blueGrey.withOpacity(0.7),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Icon(
+                      icons[index],
+                      color: Colors.yellowAccent,
+                      size: 50,
+                    ),
+                    Text(
+                      label[index].toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Acme',
+                          letterSpacing: 2),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

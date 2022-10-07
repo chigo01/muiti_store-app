@@ -6,6 +6,7 @@ import 'package:multi_store_app/main_screens/stores.dart';
 
 class SupplierHomeScreen extends StatefulWidget {
   const SupplierHomeScreen({Key? key}) : super(key: key);
+  static String supplierScreen = '/SupplerScreen';
 
   @override
   State<SupplierHomeScreen> createState() => _SupplierHomeScreenState();

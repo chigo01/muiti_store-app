@@ -7,6 +7,7 @@ import 'package:multi_store_app/main_screens/stores.dart';
 
 class CustomerHomeScreen extends StatefulWidget {
   const CustomerHomeScreen({Key? key}) : super(key: key);
+  static String customerScreen = '/CustomerScreen';
 
   @override
   State<CustomerHomeScreen> createState() => _CustomerHomeScreenState();

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:multi_store_app/customer-screens/customer_orders.dart';
+import 'package:multi_store_app/customer-screens/wishlist.dart';
+import 'package:multi_store_app/main_screens/cart.dart';
+import 'package:multi_store_app/main_screens/welcome_screen.dart';
+import 'package:multi_store_app/widgets/components/appbar_widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -96,7 +101,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             child: TextButton(
-                              onPressed: (() {}),
+                              onPressed: (() {
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) {
+                                    return const CartScreen(
+                                      back: AppBarButton(),
+                                    );
+                                  },
+                                ));
+                              }),
                               child: SizedBox(
                                 height: 40,
                                 width: MediaQuery.of(context).size.width * 0.2,
@@ -115,7 +128,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Container(
                             color: Colors.yellow,
                             child: TextButton(
-                              onPressed: (() {}),
+                              onPressed: (() {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const CustomerOrders(),
+                                  ),
+                                );
+                              }),
                               child: SizedBox(
                                 height: 40,
                                 width: MediaQuery.of(context).size.width * 0.2,
@@ -140,7 +161,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             child: TextButton(
-                              onPressed: (() {}),
+                              onPressed: (() {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const WishListScreen(),
+                                  ),
+                                );
+                              }),
                               child: SizedBox(
                                 height: 40,
                                 width: MediaQuery.of(context).size.width * 0.2,
@@ -226,7 +255,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   const YellowDivider(),
                                   RepeatedListTile(
                                     icon: Icons.logout,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.pushReplacementNamed(
+                                          context, WelcomeScreen.welcomeScreen);
+                                    },
                                     title: 'Log out',
                                   ),
                                 ],
