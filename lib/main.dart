@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:multi_store_app/auth/customer_login.dart';
+import 'package:multi_store_app/auth/customer_signup.dart';
 import 'package:multi_store_app/main_screens/customer_home.dart';
 import 'package:multi_store_app/main_screens/supplier_home.dart';
 
 import 'package:multi_store_app/main_screens/welcome_screen.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -22,6 +29,8 @@ class MyApp extends StatelessWidget {
             const CustomerHomeScreen(),
         SupplierHomeScreen.supplierScreen: (context) =>
             const SupplierHomeScreen(),
+        CustomerRegister.signUp: (context) => const CustomerRegister(),
+        CustomerLogin.login: (context) => const CustomerLogin()
       },
     );
   }

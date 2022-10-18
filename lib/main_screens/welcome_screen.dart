@@ -1,6 +1,10 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
+import 'package:multi_store_app/auth/customer_login.dart';
+import 'package:multi_store_app/auth/customer_signup.dart';
 import 'package:multi_store_app/main_screens/customer_home.dart';
 import 'package:multi_store_app/main_screens/supplier_home.dart';
 import 'package:multi_store_app/widgets/components/yellow_button.dart';
@@ -32,6 +36,7 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen>
     with TickerProviderStateMixin {
   late AnimationController _controller;
+  bool processing = false;
   @override
   void initState() {
     super.initState();
@@ -49,6 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -182,14 +188,19 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             label: 'Log In',
                             onPressed: () {
                               Navigator.pushReplacementNamed(
-                                  context, CustomerHomeScreen.customerScreen);
+                                  context, CustomerLogin.login);
                             },
                           ),
                         ),
                         YellowButton(
                           width: 0.25,
                           label: 'Sign up',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              CustomerRegister.signUp,
+                            );
+                          },
                         ),
                         AnimatedLogo(controller: _controller),
                       ],
@@ -215,15 +226,26 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                         onPressed: () {},
                         child: Image.asset('images/inapp/facebook.jpg'),
                       ),
-                      GoogleFacebookLogin(
-                        label: 'Guest',
-                        onPressed: () {},
-                        child: const Icon(
-                          Icons.person,
-                          size: 55,
-                          color: Colors.lightBlueAccent,
-                        ),
-                      ),
+                      processing == true
+                          ? const CircularProgressIndicator()
+                          : GoogleFacebookLogin(
+                              label: 'Guest',
+                              onPressed: () async {
+                                setState(() {
+                                  processing = true;
+                                });
+                                await FirebaseAuth.instance.signInAnonymously();
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  CustomerHomeScreen.customerScreen,
+                                );
+                              },
+                              child: const Icon(
+                                Icons.person,
+                                size: 55,
+                                color: Colors.lightBlueAccent,
+                              ),
+                            ),
                     ],
                   ),
                 ),

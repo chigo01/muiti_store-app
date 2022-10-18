@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_store_app/customer-screens/customer_orders.dart';
 import 'package:multi_store_app/customer-screens/wishlist.dart';
 import 'package:multi_store_app/main_screens/cart.dart';
 import 'package:multi_store_app/main_screens/welcome_screen.dart';
+import 'package:multi_store_app/widgets/components/alart_dialog.dart';
 import 'package:multi_store_app/widgets/components/appbar_widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -255,9 +258,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   const YellowDivider(),
                                   RepeatedListTile(
                                     icon: Icons.logout,
-                                    onPressed: () {
-                                      Navigator.pushReplacementNamed(
-                                          context, WelcomeScreen.welcomeScreen);
+                                    onPressed: () async {
+                                      MyAlertDialog.showMyDialog(
+                                        context: context,
+                                        title: 'Log out',
+                                        message: 'Are you sure to log out ?',
+                                        tabNo: () {
+                                          Navigator.pop(context);
+                                        },
+                                        tabYes: () async {
+                                          await FirebaseAuth.instance.signOut();
+                                          Navigator.pop(context);
+                                          Navigator.pushReplacementNamed(
+                                            context,
+                                            WelcomeScreen.welcomeScreen,
+                                          );
+                                        },
+                                      );
                                     },
                                     title: 'Log out',
                                   ),
@@ -270,7 +287,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ],
