@@ -1,12 +1,14 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:multi_store_app/auth/customer_login.dart';
 import 'package:multi_store_app/auth/customer_signup.dart';
+import 'package:multi_store_app/auth/supplier_login.dart';
+import 'package:multi_store_app/auth/supplier_signup.dart';
 import 'package:multi_store_app/main_screens/customer_home.dart';
-import 'package:multi_store_app/main_screens/supplier_home.dart';
 import 'package:multi_store_app/widgets/components/yellow_button.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -50,6 +52,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     _controller.dispose();
     super.dispose();
   }
+
+  CollectionReference customers =
+      FirebaseFirestore.instance.collection('customers');
+  late String _uid;
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +153,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                               label: 'Log In',
                               onPressed: () {
                                 Navigator.pushReplacementNamed(
-                                    context, SupplierHomeScreen.supplierScreen);
+                                    context, SupplierLogin.login);
                               },
                             ),
                             Padding(
@@ -155,7 +161,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                               child: YellowButton(
                                 width: 0.25,
                                 label: 'Sign up',
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushReplacementNamed(
+                                      context, SupplierRegister.suppliersUp);
+                                },
                               ),
                             ),
                           ],
@@ -234,7 +243,27 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                 setState(() {
                                   processing = true;
                                 });
-                                await FirebaseAuth.instance.signInAnonymously();
+                                await FirebaseAuth.instance
+                                    .signInAnonymously()
+                                    .whenComplete(
+                                  () async {
+                                    _uid =
+                                        FirebaseAuth.instance.currentUser!.uid;
+                                    await customers.doc(_uid).set(
+                                      {
+                                        //name the parameter according to the user id
+                                        //using this upload all customers information/ documents to fire store
+                                        'name': '',
+                                        'email': '',
+                                        'profileimage': '',
+                                        'phone': '',
+                                        'address': '',
+                                        'cid': _uid, //customer id
+                                      },
+                                    );
+                                  },
+                                );
+
                                 Navigator.pushReplacementNamed(
                                   context,
                                   CustomerHomeScreen.customerScreen,

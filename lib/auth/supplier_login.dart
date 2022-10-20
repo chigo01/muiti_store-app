@@ -2,19 +2,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_store_app/auth/customer_signup.dart';
 import 'package:multi_store_app/main_screens/customer_home.dart';
+import 'package:multi_store_app/main_screens/supplier_home.dart';
 
 import 'package:multi_store_app/widgets/components/auth_widgets.dart';
 import 'package:multi_store_app/widgets/components/snackbar.dart';
 
-class CustomerLogin extends StatefulWidget {
-  const CustomerLogin({Key? key}) : super(key: key);
+class SupplierLogin extends StatefulWidget {
+  const SupplierLogin({Key? key}) : super(key: key);
   static String login = "/customer_login";
 
   @override
-  State<CustomerLogin> createState() => _CustomerRegisterState();
+  State<SupplierLogin> createState() => _CustomerRegisterState();
 }
 
-class _CustomerRegisterState extends State<CustomerLogin> {
+class _CustomerRegisterState extends State<SupplierLogin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
@@ -42,7 +43,7 @@ class _CustomerRegisterState extends State<CustomerLogin> {
             .reset(); //for resetting the inputted data after log ii
 
         Navigator.pushReplacementNamed(
-            context, CustomerHomeScreen.customerScreen);
+            context, SupplierHomeScreen.supplierScreen);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           setState(() {

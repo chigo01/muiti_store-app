@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:multi_store_app/auth/customer_login.dart';
 import 'package:multi_store_app/auth/customer_signup.dart';
+import 'package:multi_store_app/auth/supplier_login.dart';
+import 'package:multi_store_app/auth/supplier_signup.dart';
 import 'package:multi_store_app/main_screens/customer_home.dart';
 import 'package:multi_store_app/main_screens/supplier_home.dart';
 
@@ -30,7 +32,9 @@ class MyApp extends StatelessWidget {
         SupplierHomeScreen.supplierScreen: (context) =>
             const SupplierHomeScreen(),
         CustomerRegister.signUp: (context) => const CustomerRegister(),
-        CustomerLogin.login: (context) => const CustomerLogin()
+        CustomerLogin.login: (context) => const CustomerLogin(),
+        SupplierLogin.login: (context) => const SupplierLogin(),
+        SupplierRegister.suppliersUp: (context) => const SupplierRegister()
       },
     );
   }

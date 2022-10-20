@@ -5,28 +5,29 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:multi_store_app/auth/customer_login.dart';
+import 'package:multi_store_app/auth/supplier_login.dart';
 
 import 'package:multi_store_app/widgets/components/auth_widgets.dart';
 import 'package:multi_store_app/widgets/components/snackbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-class CustomerRegister extends StatefulWidget {
-  const CustomerRegister({Key? key}) : super(key: key);
-  static String signUp = "/customer_signup";
+class SupplierRegister extends StatefulWidget {
+  const SupplierRegister({Key? key}) : super(key: key);
+  static String suppliersUp = "/supplier_signup";
 
   @override
-  State<CustomerRegister> createState() => _CustomerRegisterState();
+  State<SupplierRegister> createState() => _CustomerRegisterState();
 }
 
-class _CustomerRegisterState extends State<CustomerRegister> {
+class _CustomerRegisterState extends State<SupplierRegister> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
-  late String name;
+  late String storeName;
   late String email;
   late String password;
-  late String profileImage;
+  late String storeLogo;
   late String _uid;
   bool processing = false;
 
@@ -35,8 +36,8 @@ class _CustomerRegisterState extends State<CustomerRegister> {
   XFile? _imageFile; // Is the image class for pick an actual image
   final ImagePicker _imagePicker = ImagePicker(); //Instance of ImagePicker
 
-  CollectionReference customers = FirebaseFirestore.instance.collection(
-      'customers'); // the database collection for firestore the table row of collection
+  CollectionReference suppliers = FirebaseFirestore.instance.collection(
+      'suppliers'); // the database collection for firestore the table row of collection
 
   Future<void> _pickImageFromCamera() async {
     try {
@@ -88,7 +89,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
 
           firebase_storage.Reference ref =
               firebase_storage.FirebaseStorage.instance.ref(
-                  'cust-images/$email.jpg'); //email address is unique foe all users that's why it is used and the directory of the files
+                  'supp-images/$email.jpg'); //email address is unique foe all users that's why it is used and the directory of the files
 
           // use for uploading files to fire store
           await ref.putFile(
@@ -96,18 +97,19 @@ class _CustomerRegisterState extends State<CustomerRegister> {
 
           _uid = FirebaseAuth.instance.currentUser!.uid;
 
-          profileImage = await ref.getDownloadURL();
+          storeLogo = await ref.getDownloadURL();
           // for get the file download url
 
-          await customers.doc(_uid).set({
+          await suppliers.doc(_uid).set({
             //name the parameter according to the user id
-            //using this upload all customers information/ documents to fire store
-            'name': name,
+            //using this upload all suppliers information/ documents to fire store
+            'storename': storeName,
             'email': email,
-            'profileimage': profileImage,
+            'profilelogo': storeLogo,
             'phone': '',
             'address': '',
-            'cid': _uid, //customer id
+            'sid': _uid, //customer id
+            'coverimage': ''
           });
 
           _formKey.currentState!
@@ -116,7 +118,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
             _imageFile = null;
           });
 
-          Navigator.pushReplacementNamed(context, CustomerLogin.login);
+          Navigator.pushReplacementNamed(context, SupplierLogin.login);
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {
             setState(() {
@@ -239,7 +241,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                           },
                           // controller: _nameController,
                           onChanged: (value) {
-                            name = value;
+                            storeName = value;
                           },
                           decoration: textFormDecoration.copyWith(
                             labelText: 'Full Name',
