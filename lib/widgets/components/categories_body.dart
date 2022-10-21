@@ -44,11 +44,11 @@ class CategoriesBody extends StatelessWidget {
                       mainAxisSpacing: 70,
                       crossAxisSpacing: 15,
                       crossAxisCount: 3,
-                      children: List.generate(tagName.length, (index) {
+                      children: List.generate(tagName.length - 1, (index) {
                         return SubCategoryModel(
                           mainCategoryName: mainCategoryName,
-                          subCategoryLabel: tagName[index],
-                          subCategoryName: tagName[index],
+                          subCategoryLabel: tagName[index + 1],
+                          subCategoryName: tagName[index + 1],
                           assetName: 'images/$imageName/$imageName$index.jpg',
                         );
                       }),

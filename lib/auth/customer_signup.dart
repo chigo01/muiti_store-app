@@ -253,7 +253,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your email';
-                            } else if (value.isValidEmail() == false) {
+                            } else if (!value.isValidEmail()) {
                               return 'invalid email';
                             } else if (value.isValidEmail() == true) {
                               return null;
