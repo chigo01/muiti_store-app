@@ -309,7 +309,7 @@ class _CustomerRegisterState extends State<SupplierRegister> {
                         haveAccount: 'already have an account ?',
                         onPressed: () {
                           Navigator.pushReplacementNamed(
-                              context, CustomerLogin.login);
+                              context, SupplierLogin.login);
                         },
                       ),
                       processing

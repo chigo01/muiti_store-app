@@ -39,17 +39,19 @@ class FakeSearch extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              width: 75,
-              height: 32,
-              decoration: BoxDecoration(
-                color: UtilColor.yellow,
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Center(
-                child: Text(
-                  'search',
-                  style: TextStyle(fontSize: 16, color: UtilColor.grey),
+            Expanded(
+              child: Container(
+                width: 75,
+                height: 32,
+                decoration: BoxDecoration(
+                  color: UtilColor.yellow,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Center(
+                  child: Text(
+                    'search',
+                    style: TextStyle(fontSize: 16, color: UtilColor.grey),
+                  ),
                 ),
               ),
             )

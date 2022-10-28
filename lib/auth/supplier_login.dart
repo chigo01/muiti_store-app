@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_store_app/auth/customer_signup.dart';
-import 'package:multi_store_app/main_screens/customer_home.dart';
+import 'package:multi_store_app/auth/supplier_signup.dart';
 import 'package:multi_store_app/main_screens/supplier_home.dart';
 
 import 'package:multi_store_app/widgets/components/auth_widgets.dart';
@@ -9,7 +8,7 @@ import 'package:multi_store_app/widgets/components/snackbar.dart';
 
 class SupplierLogin extends StatefulWidget {
   const SupplierLogin({Key? key}) : super(key: key);
-  static String login = "/customer_login";
+  static String login = "/supplier_login";
 
   @override
   State<SupplierLogin> createState() => _CustomerRegisterState();
@@ -157,7 +156,7 @@ class _CustomerRegisterState extends State<SupplierLogin> {
                         haveAccount: 'Don\'t have Account? ',
                         onPressed: () {
                           Navigator.pushReplacementNamed(
-                              context, CustomerRegister.signUp);
+                              context, SupplierRegister.suppliersUp);
                         },
                       ),
                       processing

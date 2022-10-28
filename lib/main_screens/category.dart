@@ -22,6 +22,18 @@ List<ItemsData> items = [
   ItemsData(label: 'beauty')
 ];
 
+List<Widget> pages = [
+  const MenCategory(),
+  const WomenCategory(),
+  const ShoesCategory(),
+  const BagsCategory(),
+  const ElectronicsCategory(),
+  const AccessoriesCategory(),
+  const HomeAndGarden(),
+  const KidsCategory(),
+  const BeautyCategory(),
+];
+
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({Key? key}) : super(key: key);
 
@@ -111,31 +123,20 @@ class _CategoryScreenState extends State<CategoryScreen> {
       width: width * 0.8,
       color: Colors.white,
       child: PageView(
-        controller: _pageController,
-        onPageChanged: ((value) {
-          items
-              .map(
-                (element) => element.isSelected = false,
-              )
-              .toList();
+          controller: _pageController,
+          onPageChanged: ((value) {
+            items
+                .map(
+                  (element) => element.isSelected = false,
+                )
+                .toList();
 
-          setState(() {
-            items[value].isSelected = true;
-          });
-        }),
-        scrollDirection: Axis.vertical,
-        children: const [
-          MenCategory(),
-          WomenCategory(),
-          ShoesCategory(),
-          BagsCategory(),
-          ElectronicsCategory(),
-          AccessoriesCategory(),
-          HomeAndGarden(),
-          KidsCategory(),
-          BeautyCategory(),
-        ],
-      ),
+            setState(() {
+              items[value].isSelected = true;
+            });
+          }),
+          scrollDirection: Axis.vertical,
+          children: List.generate(9, (index) => pages[index])),
     );
   }
 }

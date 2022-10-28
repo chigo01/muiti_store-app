@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:multi_store_app/minor_screen/subcatag_products.dart';
 
@@ -31,16 +29,20 @@ class SubCategoryModel extends StatelessWidget {
       }),
       child: Column(
         children: [
-          SizedBox(
-            height: 70,
-            width: 70,
-            child: Image(
-              image: AssetImage(assetName),
+          Expanded(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.7,
+              width: 70,
+              child: Image(
+                image: AssetImage(assetName),
+              ),
             ),
           ),
-          Text(
-            subCategoryLabel,
-            style: const TextStyle(fontSize: 11),
+          Expanded(
+            child: Text(
+              subCategoryLabel,
+              style: const TextStyle(fontSize: 11),
+            ),
           )
         ],
       ),
