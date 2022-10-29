@@ -42,6 +42,7 @@ dependencies:
   firebase_core: ^1.24.0
   uuid: ^3.0.6
   staggered_grid_view_flutter: ^0.0.4
+  flutter_swiper_null_safety: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -108,3 +109,6 @@ flutter:
     - family: Acme
       fonts:
         - asset: fonts/Acme-Regular.ttf
+    - family: AkayaKanadaka
+      fonts:
+        - asset: fonts/AkayaKanadaka Regular.ttf

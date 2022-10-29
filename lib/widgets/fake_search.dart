@@ -33,9 +33,11 @@ class FakeSearch extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Icon(Icons.search, color: UtilColor.grey),
                 ),
-                Text(
-                  'What are you looking for?',
-                  style: TextStyle(fontSize: 18, color: UtilColor.grey),
+                Center(
+                  child: Text(
+                    'What are you looking for?',
+                    style: TextStyle(fontSize: 18, color: UtilColor.grey),
+                  ),
                 ),
               ],
             ),

@@ -109,7 +109,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     : Colors.grey.shade300,
                 height: 100,
                 child: Center(
-                  child: Text(items[index].label),
+                  child: Text(
+                    items[index].label,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    softWrap: false,
+                    style: const TextStyle(fontSize: 10.7),
+                  ),
                 ),
               ),
             );
