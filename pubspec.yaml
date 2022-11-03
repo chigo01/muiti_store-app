@@ -43,6 +43,8 @@ dependencies:
   uuid: ^3.0.6
   staggered_grid_view_flutter: ^0.0.4
   flutter_swiper_null_safety: ^1.0.2
+  font_awesome_flutter: ^10.2.1
+  provider: ^6.0.4
 
 dev_dependencies:
   flutter_test:
@@ -109,6 +111,6 @@ flutter:
     - family: Acme
       fonts:
         - asset: fonts/Acme-Regular.ttf
-    - family: AkayaKanadaka
-      fonts:
-        - asset: fonts/AkayaKanadaka Regular.ttf
+    # - family: AkayaKanadaka
+    #   fonts:
+    #     - asset: fonts/AkayaKanadaka Regular.ttf

@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_store_app/dash_board%20components/edit_bussiness.dart';
 import 'package:multi_store_app/dash_board%20components/manage_products.dart';
-import 'package:multi_store_app/dash_board%20components/my_store.dart';
 import 'package:multi_store_app/dash_board%20components/supplier_balance.dart';
 import 'package:multi_store_app/dash_board%20components/supplier_orders.dart';
 import 'package:multi_store_app/dash_board%20components/supplier_statics.dart';
 import 'package:multi_store_app/main_screens/welcome_screen.dart';
+import 'package:multi_store_app/minor_screen/vist_store.dart';
 import 'package:multi_store_app/widgets/components/alart_dialog.dart';
 import 'package:multi_store_app/widgets/components/appbar_widgets.dart';
 
@@ -29,7 +29,7 @@ List<IconData> icons = [
 ];
 
 List<Widget> screens = [
-  const MyStore(),
+  VisitStore(suppId: FirebaseAuth.instance.currentUser!.uid),
   const SupplierOrders(),
   const EditBusiness(),
   const ManageProducts(),

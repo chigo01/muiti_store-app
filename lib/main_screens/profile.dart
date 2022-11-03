@@ -19,10 +19,15 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   CollectionReference customers =
       FirebaseFirestore.instance.collection('customers');
+  CollectionReference anonymous =
+      FirebaseFirestore.instance.collection('anonymous');
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<DocumentSnapshot>(
-      future: customers.doc(widget.documentId).get(),
+      future: FirebaseAuth.instance.currentUser!.isAnonymous
+          ? anonymous.doc(widget.documentId).get()
+          : customers.doc(widget.documentId).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -201,7 +206,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const WishListScreen(),
+                                              const WishlistScreen(),
                                         ),
                                       );
                                     }),

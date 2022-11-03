@@ -53,8 +53,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.dispose();
   }
 
-  CollectionReference customers =
-      FirebaseFirestore.instance.collection('customers');
+  CollectionReference anonymous =
+      FirebaseFirestore.instance.collection('anonymous');
   late String _uid;
 
   @override
@@ -249,10 +249,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                   () async {
                                     _uid =
                                         FirebaseAuth.instance.currentUser!.uid;
-                                    await customers.doc(_uid).set(
+                                    await anonymous.doc(_uid).set(
                                       {
                                         //name the parameter according to the user id
-                                        //using this upload all customers information/ documents to fire store
+                                        //using this upload all anonymous information/ documents to fire store
                                         'name': '',
                                         'email': '',
                                         'profileimage': '',
