@@ -18,11 +18,11 @@ class Product {
   });
   void increase() {
     qty++;
-    price++;
+    // price++;
   }
 
   void decrease() {
     qty--;
-    price++;
+    // price++;
   }
 }

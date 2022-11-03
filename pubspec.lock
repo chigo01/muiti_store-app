@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
+  badges:
+    dependency: "direct main"
+    description:
+      name: badges
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -181,6 +188,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_datetime_picker:
+    dependency: "direct main"
+    description:
+      name: flutter_datetime_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -413,6 +427,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sn_progress_dialog:
+    dependency: "direct main"
+    description:
+      name: sn_progress_dialog
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.8"
   source_span:
     dependency: transitive
     description:

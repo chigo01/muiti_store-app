@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:multi_store_app/widgets/components/appbar_widgets.dart';
 
-class BalanceScreen extends StatelessWidget {
-  const BalanceScreen({Key? key}) : super(key: key);
+class EditBusiness extends StatelessWidget {
+  const EditBusiness({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +10,10 @@ class BalanceScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        title: const AppBarTittle(title: 'Balance Screen'),
         leading: const AppBarButton(),
+        title: const AppBarTittle(
+          title: 'EditBusiness',
+        ),
       ),
     );
   }
